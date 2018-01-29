@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FormNotify</title>
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="/assets/plugins/jquery/jquery.min.js"></script>
+</head>
+<body>
+
+    <form action="" id="form_">
+        <div><input type="text"></div>
+        <div><input type="password"></div>
+        <div><button>SEND</button></div>
+    </form>
+
+    <script src="/build/index.bundle.js"></script>
+    <script>
+        (function( $ ){
+
+            $('#form_').formNotify({
+                "uppercase"     : true,
+                "lowercase"     : true,
+                "specialcase"   : true,
+                "lengthcase"    : 8,
+                "numbercase"    : true,
+                "callback"      : null
+            })
+
+        })(jQuery)
+    </script>
+</body>
+</html>
