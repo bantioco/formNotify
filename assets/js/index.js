@@ -109,6 +109,37 @@
             }
         }
 
+        let special_case = ( $this,value, uniqid )=> {
+
+            var format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+
+            let check = format.test(value)
+
+            if( config.specialcase === true && check === true ){
+
+                if( !$('#'+uniqid+'[data-name="special-case"]').is(':visible') ){
+                    $('#'+uniqid+'_formNotify').append('<div id="'+uniqid+'" class="plugin_formNotify" data-name="special-case">OK specialcase</div>')
+                }
+            }
+            else{
+                $('div[data-name="special-case"]').remove()
+            }
+
+        }
+
+        let get_case_condition = ($this,value, uniqid)=> {
+
+            length_case( $this, value, uniqid )
+
+            lower_case( $this, value, uniqid )
+
+            upper_case( $this, value, uniqid )
+
+            number_case( $this, value, uniqid )
+
+            special_case( $this, value, uniqid )
+        }
+
 
         return this.find('input').each(function(i, e){
 
@@ -126,14 +157,7 @@
 
                     let value = $this.val()
 
-                    length_case( $this, value, uniqid )
-
-                    lower_case( $this, value, uniqid )
-
-                    upper_case( $this, value, uniqid )
-
-                    number_case( $this, value, uniqid )
-
+                    get_case_condition( $this, value, uniqid )
                 })
             }
 
